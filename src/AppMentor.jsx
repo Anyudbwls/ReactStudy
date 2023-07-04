@@ -1,42 +1,43 @@
 import React, { useState } from 'react';
 
 export default function AppMentor() {
-  const [formState, setFromState] = useState({
-    name: 'yujin',
-    age: 25,
+  const [person, setPerson] = useState({
+    name: '엘리',
     title: '개발자',
     mentor: {
-      name: '이듬',
-      title: '시니어 개발자',
+      name: '밥',
+      title: '시니어개발자',
     },
   });
-
   return (
     <div>
-      <div>
-        {formState.name}은 {formState.age}이고 {formState.title}이다.
-      </div>
-
-      <div>
-        {formState.name}의 멘토는 {formState.mentor.title}인 {formState.mentor.name}이다.
-      </div>
+      <h1>
+        {person.name}는 {person.title}
+      </h1>
+      <p>
+        {person.name}의 멘토는 {person.mentor.name} ({person.mentor.title})
+      </p>
       <button
-        type="button"
         onClick={() => {
-          const name = prompt(`${formState.name}의 멘토는?`);
-          setFromState((prev) => ({ ...prev, mentor: { ...formState.mentor, name } }));
+          const name = prompt(`what's your mentor's name?`);
+          setPerson((person) => ({
+            ...person,
+            mentor: { ...person.mentor, name },
+          }));
         }}
       >
-        change mentor name
+        멘토 이름 바꾸기
       </button>
       <button
-        type="button"
         onClick={() => {
-          const title = prompt(`멘토의 직업은?`);
-          setFromState((prev) => ({ ...prev, mentor: { ...formState.mentor, title } }));
+          const title = prompt(`what's your mentor's title?`);
+          setPerson((person) => ({
+            ...person,
+            mentor: { ...person.mentor, title },
+          }));
         }}
       >
-        change mentor title
+        멘토 타이틀 바꾸기
       </button>
     </div>
   );

@@ -1,4 +1,3 @@
-/* eslint-disable default-case */
 export default function personReducer(person, action) {
   switch (action.type) {
     case 'updated': {
@@ -17,18 +16,17 @@ export default function personReducer(person, action) {
       const { name, title } = action;
       return {
         ...person,
-        mentor: [...person.mentors, { name, title }],
+        mentors: [...person.mentors, { name, title }],
       };
     }
-
     case 'deleted': {
       return {
         ...person,
-        mentor: person.mentors.filter((mentor) => mentor.name !== action.name),
+        mentors: person.mentors.filter((mentor) => mentor.name !== action.name),
       };
     }
     default: {
-      throw Error(`알수없는 액션 타입이다 : ${action.type}`);
+      throw Error(`알수없는 액션 타입이다: ${action.type}`);
     }
   }
 }
